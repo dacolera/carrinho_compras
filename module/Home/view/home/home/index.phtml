@@ -8,7 +8,11 @@
         <tbody>
             <?php foreach ($this->categorias as $categoria): ?>
                 <tr>
-                    <td><?php echo $categoria['descricao'] ?></td>
+                    <td>
+                        <a href="/categoria/<?php echo $categoria['categoria_id'] ?>/produtos/">
+                            <?php echo $categoria['descricao'] ?>
+                        </a>
+                    </td>
                 </tr>
             <?php endforeach; ?>
         </tbody>

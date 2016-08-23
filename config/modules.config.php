@@ -13,5 +13,6 @@
 return [
     'Zend\Validator',
     'Home',
-    'Categorias'
+    'Categorias',
+    'Produtos',
 ];

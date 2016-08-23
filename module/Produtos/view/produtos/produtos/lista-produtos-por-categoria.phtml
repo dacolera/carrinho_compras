@@ -1,0 +1,28 @@
+<div class="table-responsive">
+    <table class="table">
+        <thead>
+            <tr>
+                <th><h2>Produtos da categoria : <?php echo $this->categoriaDescricao ?></h2></th>
+            </tr>
+        </thead>
+        <tbody>
+            <?php foreach ($this->produtos as $produto): ?>
+                <tr>
+                    <td>
+                        <p>
+                            <a href="/produto/<?=$produto['produto_id']?>/">
+                                <?php echo $produto['nome'] ?>
+                            </a>
+                        </p>
+                        <a href="/produto/<?=$produto['produto_id']?>/">
+                            <img src="<?=$produto['imagem']?>" class="img-rounded" height="150" width="150">
+                        </a>
+                        <p>
+                            <h2>R$ <?php echo number_format($produto['preco'], 2, ".", ",") ?></h2>
+                        </p>
+                    </td>
+                  </tr>
+            <?php endforeach; ?>
+        </tbody>
+    </table>
+</div>

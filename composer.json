@@ -18,7 +18,8 @@
     "autoload": {
         "psr-4": {
             "Home\\": "module/Home/src/",
-            "Categorias\\": "module/Categorias/src/"
+            "Categorias\\": "module/Categorias/src/",
+            "Produtos\\": "module/Produtos/src/"
         }
     },
     "autoload-dev": {
