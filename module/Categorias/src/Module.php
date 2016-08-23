@@ -11,10 +11,6 @@ class Module
 
     public function getServiceConfig()
     {
-        return array(
-            'factories' => array(
-                'Categorias\Model\Categorias' =>  'Categorias\Model\Factory\Categorias',
-            ),
-        );
+        return include __DIR__ . '/../config/services.config.php';
     }
 }

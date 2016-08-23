@@ -8,7 +8,7 @@
         <tbody>
             <?php foreach ($this->categorias as $categoria): ?>
                 <tr>
-                    <td><?php echo $this->escapeHtml($categoria) ?></td>
+                    <td><?php echo $categoria['descricao'] ?></td>
                 </tr>
             <?php endforeach; ?>
         </tbody>
