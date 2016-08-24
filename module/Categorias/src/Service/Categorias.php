@@ -31,4 +31,19 @@ class Categorias
 	{
 		return $this->categoriasMapper->getCategorias();
 	}
+
+	/**
+	 * Retorna uma categoria pelo Id
+	 * @param int $categoriaId
+	 * @return array
+	 */
+	public function getCategoriaPorId($categoriaId)
+	{
+		$categoria = $this->categoriasMapper->getCategoriaPorId($categoriaId);
+
+		if (!$categoria->count()) {
+			throw new \Exception('Não existe a categoria!');
+		}
+		return $categoria->current();	
+	}
 }

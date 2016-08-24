@@ -1,0 +1,38 @@
+<div class="container">
+	<div class="row">
+		<div class="col-md-12">
+			<h2> <?php echo $this->produto['descricao'] ?> </h2>
+		</div>
+		<div class="col-md-3">
+			<img src="<?php echo $this->produto['imagem'] ?>" class="img-rounded" height="200" width="200">
+		</div>
+		<div class="col-md-9">
+			<h2>Produto: <small><?php echo $produto['nome'] ?></small></h2>
+		</div>
+		<div class="col-md-9">
+			<h2>Marca: <small><?php echo $produto['marca'] ?></small></h2>
+		</div>	
+		<div class="col-md-9">
+			<h2>Preço: <small>R$ <?php echo number_format($produto['preco'], 2, ".", ",") ?></small></h2>
+		</div>		
+	</div>
+	<?php if (count($this->produtosCaracteristicas)) : ?>
+		<div class="row">
+			<table class="table table-striped">
+				<thead>
+					<tr>
+						<th>Caracteristicas do produto</th>
+					</tr>
+				</thead>
+				<tbody>
+					<?php foreach ($this->produtosCaracteristicas as $caracteristica): ?>
+						<tr>
+						 	<th scope="row"><?php echo $caracteristica['descricao'] ?></th>
+						 	<td><?php echo $caracteristica['informacao'] ?></td>
+						</tr>
+					<?php endforeach; ?>
+				</tbody>
+			</table>
+		</div>
+	<?php endif; ?>
+</div>

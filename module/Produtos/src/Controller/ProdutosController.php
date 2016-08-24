@@ -14,15 +14,17 @@ class ProdutosController extends AbstractActionController
     public function listaProdutosPorCategoriaAction()
     {
         $categoriaId = $this->params('categoriaId', null);
-        $categoriaDescricao = "Teste";
+      
+        $categoriasService = $this->getServiceLocator()->get('Categorias\Service\Categorias');
+        $categoria = $categoriasService->getCategoriaPorId($categoriaId);
 
-        $produtosService = $this->getServiceLocator()->get('Produtos\Service\Produtos');
-    	
+        $produtosService = $this->getProdutosService();
         $produtos = $produtosService->getProdutosPorCategorias($categoriaId);
-
+        
     	return (new ViewModel())
-    		->setVariable('produtos', $produtos)
-            ->setVariable('categoriaDescricao', $categoriaDescricao);
+            ->setVariable('categoria', $categoria)
+            ->setVariable('produtos', $produtos);
+
     }
 
     /**
@@ -32,7 +34,23 @@ class ProdutosController extends AbstractActionController
     public function detalhaProdutoAction()
     {
         $produtoId = $this->params('produtoId', null);
+        
+        $produtosService = $this->getProdutosService();
+        
+        $produto = $produtosService->getProdutoPorId($produtoId);
+        $produtosCaracteristicas = $produtosService->getCaracteristicasProdutoPorId($produtoId);
 
-        die('Tela de detalhe do produto: ' . $produtoId );
+        return (new ViewModel())
+            ->setVariable('produto', $produto)
+            ->setVariable('produtosCaracteristicas', $produtosCaracteristicas);
+    }
+
+    /**
+     * Ratorna uma instancia de ProdutosService
+     * @return Produtos\Service\Produtos
+     */
+    private function getProdutosService()
+    {
+        return $this->getServiceLocator()->get('Produtos\Service\Produtos');
     }
 }

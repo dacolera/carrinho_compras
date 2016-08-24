@@ -21,4 +21,28 @@ class Categorias extends Adapter
 
 		return $result;
 	}
+
+	/**
+	 * Retorna uma categoria pelo id
+	 * @param int $categoriaId
+	 * @return array
+	 */
+	public function getCategoriaPorId($categoriaId)
+	{
+		$statement = $this->createStatement(
+			'SELECT 
+			    c.*
+			FROM
+			    categoria AS c
+			WHERE
+			    c.categoria_id = ' .$categoriaId
+		);
+
+		$statement->prepare();
+		$result = $statement->execute();
+
+		return $result;
+	}
+
+
 }

@@ -14,7 +14,6 @@ class CategoriasController extends AbstractActionController
     public function listaProdutosPorCategoriaAction()
     {
     	$categoriasModel = $this->getServiceLocator()->get('Categorias\Service\Categorias');
-    	
         $categorias = $categoriasModel->getCategorias();
 
     	return (new ViewModel())
