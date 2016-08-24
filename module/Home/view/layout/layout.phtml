@@ -19,6 +19,7 @@
 
         <!-- Scripts -->
         <?= $this->headScript()
+            ->prependFile($this->basePath('js/carrinho-compras.js'))
             ->prependFile($this->basePath('js/bootstrap.min.js'))
             ->prependFile($this->basePath('js/jquery-3.1.0.min.js'))
         ?>
@@ -36,7 +37,7 @@
                 <div class="collapse navbar-collapse">
                     <ul class="nav navbar-nav">
                         <li class="active"><a href="<?= $this->url('home') ?>">Home</a></li>
-                        <!-- <li class="active"><a href="<?= $this->url('carrinho') ?>">Carrinho</a></li> -->
+                        <li class="active"><a href="<?= $this->url('carrinho') ?>">Carrinho</a></li>
                     </ul>
                 </div>
             </div>
@@ -44,7 +45,6 @@
         <div class="container">
             <div class="form-group">
                 <label for="buscarProdutos"><h2>Buscar Produtos</h2></label>
-                <>
                 <input type="produto" class="form-control" id="produto" placeholder="Buscar">
             </div>
             <?= $this->content ?>

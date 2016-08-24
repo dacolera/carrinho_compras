@@ -12,7 +12,8 @@
  */
 return [
     'Zend\Validator',
-    'Home',
+    'Carrinho',
     'Categorias',
+    'Home',
     'Produtos',
 ];
