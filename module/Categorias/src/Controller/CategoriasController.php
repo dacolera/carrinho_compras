@@ -7,16 +7,16 @@ use Zend\View\Model\ViewModel;
 
 class CategoriasController extends AbstractActionController
 {
-	/**
-	 * Renderiza a tela de produtos por Categoria
-	 * @return ViewModel
-	 */
+    /**
+     * Renderiza a tela de produtos por Categoria
+     * @return ViewModel
+     */
     public function listaProdutosPorCategoriaAction()
     {
-    	$categoriasModel = $this->getServiceLocator()->get('Categorias\Service\Categorias');
+        $categoriasModel = $this->getServiceLocator()->get('Categorias\Service\Categorias');
         $categorias = $categoriasModel->getCategorias();
 
-    	return (new ViewModel())
-    		->setVariable('categorias', $categorias);
+        return (new ViewModel())
+            ->setVariable('categorias', $categorias);
     }
 }

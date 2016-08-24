@@ -17,7 +17,7 @@ class ProdutosFactory implements FactoryInterface
     public function createService(ServiceLocatorInterface $serviceLocator)
     {
         return new ProdutosMapper(
-        	$serviceLocator->get('config')['db']
+            $serviceLocator->get('config')['db']
         );
     }
 }

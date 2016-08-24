@@ -1,26 +1,26 @@
 <?php
 
-return array(
-    'controllers' => array(
-        'invokables' => array(
+return [
+    'controllers' => [
+        'invokables' => [
             'Home\Controller\Home' => 'Home\Controller\HomeController',
-        ),
-    ),
+        ],
+    ],
 
-    'router' => array(
-        'routes' => array(
-            'home' => array(
+    'router' => [
+        'routes' => [
+            'home' => [
                 'type'    => 'segment',
-                'options' => array(
+                'options' => [
                     'route'    => '/',
-                    'defaults' => array(
+                    'defaults' => [
                         'controller' => 'Home\Controller\Home',
                         'action'     => 'index',
-                    ),
-                ),
-            ),
-        ),
-    ),
+                    ],
+                ],
+            ],
+        ],
+    ],
 
     'view_manager' => [
         'display_not_found_reason' => true,
@@ -38,4 +38,4 @@ return array(
             __DIR__ . '/../view',
         ],
     ],
-);
+];

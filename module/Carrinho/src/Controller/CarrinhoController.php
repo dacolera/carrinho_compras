@@ -8,31 +8,31 @@ use Zend\View\Model\JsonModel;
 
 class CarrinhoController extends AbstractActionController
 {
-	/**
-	 * Renderiza a tela de carrinho do cliente
-	 * @return ViewModel
-	 */
-    public function MostraCarrinhoAction()
+    /**
+     * Renderiza a tela de carrinho do cliente
+     * @return ViewModel
+     */
+    public function mostraCarrinhoAction()
     {
         // Carrega do cache (redis?) os produtos adicionados
-        $produtosCarrinho = array(
-            'produtos' => array(
-                "1" => array(
+        $produtosCarrinho = [
+            'produtos' => [
+                "1" => [
                     "nome" => "TV SAMSUNG",
                     "preco" => "1.500,00",
                     "imagem" => "<img>",
                     "quantidade" => "1",
-                ),
-                "2" => array(
+                ],
+                "2" => [
                     "nome" => "TV SONY",
                     "preco" => "3.000,00",
                     "imagem" => "<img>",
                     "quantidade" => "2",
-                )
-            )
-        );
+                ]
+            ]
+        ];
 
-    	return (new ViewModel())
+        return (new ViewModel())
             ->setVariable('produtosCarrinho', $produtosCarrinho);
     }
 
@@ -40,7 +40,7 @@ class CarrinhoController extends AbstractActionController
      * Adiciona o produto no carrinho
      * @return JsonModel
      */
-    public function AdicionaProdutoAction()
+    public function adicionaProdutoAction()
     {
         // Adicionar o produto ao cache (redis?)
         return new JsonModel(

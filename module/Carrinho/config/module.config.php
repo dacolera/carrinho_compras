@@ -1,36 +1,36 @@
 <?php
 
-return array(
-	'controllers' => array(
-        'invokables' => array(
+return [
+    'controllers' => [
+        'invokables' => [
             'Carrinho\Controller\Carrinho' => 'Carrinho\Controller\CarrinhoController',
-        ),
-    ),
+        ],
+    ],
 
-    'router' => array(
-        'routes' => array(
-            'carrinho' => array(
+    'router' => [
+        'routes' => [
+            'carrinho' => [
                 'type'    => 'segment',
-                'options' => array(
+                'options' => [
                     'route'    => '/carrinho/',
-                    'defaults' => array(
+                    'defaults' => [
                         'controller' => 'Carrinho\Controller\Carrinho',
-                        'action'     => 'MostraCarrinho',
-                    ),
-                ),
-            ),
-            'adiciona-produto' => array(
+                        'action'     => 'mostraCarrinho',
+                    ],
+                ],
+            ],
+            'adiciona-produto' => [
                 'type'    => 'segment',
-                'options' => array(
+                'options' => [
                     'route'    => '/carrinho/adicionar-produto/',
-                    'defaults' => array(
+                    'defaults' => [
                         'controller' => 'Carrinho\Controller\Carrinho',
-                        'action'     => 'AdicionaProduto',
-                    ),
-                ),
-            ),            
-        ),
-    ),
+                        'action'     => 'adicionaProduto',
+                    ],
+                ],
+            ],
+        ],
+    ],
 
     'view_manager' => [
         'display_not_found_reason' => true,
@@ -48,5 +48,5 @@ return array(
         'strategies' => [
             'ViewJsonStrategy',
         ],
-    ],    
-);
+    ],
+];

@@ -17,7 +17,7 @@ class CategoriasFactory implements FactoryInterface
     public function createService(ServiceLocatorInterface $serviceLocator)
     {
         return new CategoriasMapper(
-        	$serviceLocator->get('config')['db']
+            $serviceLocator->get('config')['db']
         );
     }
 }

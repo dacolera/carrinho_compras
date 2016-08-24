@@ -12,13 +12,13 @@
  */
 
 return [
-    'db' => array(
+    'db' => [
         'driver'         => 'Pdo',
         'dsn'            => 'mysql:dbname=carrinho_compras;host=localhost',
         'username'       => 'carrinho_compras',
         'password'       => 'carrinho_compras',
-        'driver_options' => array(
+        'driver_options' => [
             PDO::MYSQL_ATTR_INIT_COMMAND => 'SET NAMES \'UTF8\''
-        ),
-    ),
+        ],
+    ],
 ];

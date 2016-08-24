@@ -7,24 +7,23 @@ use Zend\View\Model\ViewModel;
 
 class ProdutosController extends AbstractActionController
 {
-	/**
-	 * Renderiza a tela de produtos por Categoria
-	 * @return ViewModel
-	 */
+    /**
+     * Renderiza a tela de produtos por Categoria
+     * @return ViewModel
+     */
     public function listaProdutosPorCategoriaAction()
     {
         $categoriaId = $this->params('categoriaId', null);
-      
+
         $categoriasService = $this->getServiceLocator()->get('Categorias\Service\Categorias');
         $categoria = $categoriasService->getCategoriaPorId($categoriaId);
 
         $produtosService = $this->getProdutosService();
         $produtos = $produtosService->getProdutosPorCategorias($categoriaId);
-        
-    	return (new ViewModel())
+
+        return (new ViewModel())
             ->setVariable('categoria', $categoria)
             ->setVariable('produtos', $produtos);
-
     }
 
     /**
@@ -34,9 +33,9 @@ class ProdutosController extends AbstractActionController
     public function detalhaProdutoAction()
     {
         $produtoId = $this->params('produtoId', null);
-        
+
         $produtosService = $this->getProdutosService();
-        
+
         $produto = $produtosService->getProdutoPorId($produtoId);
         $produtosCaracteristicas = $produtosService->getCaracteristicasProdutoPorId($produtoId);
 

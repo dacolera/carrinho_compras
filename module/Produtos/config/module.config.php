@@ -1,43 +1,43 @@
 <?php
 
-return array(
-	'controllers' => array(
-        'invokables' => array(
+return [
+    'controllers' => [
+        'invokables' => [
             'Produtos\Controller\Produtos' => 'Produtos\Controller\ProdutosController',
-        ),
-    ),
+        ],
+    ],
 
-    'router' => array(
-        'routes' => array(
-            'listaProdutosPorCategoria' => array(
+    'router' => [
+        'routes' => [
+            'listaProdutosPorCategoria' => [
                 'type'    => 'segment',
-                'options' => array(
+                'options' => [
                     'route'    => '/categoria/:categoriaId/produtos/',
-	                'constraints' => array(
-	                    'categoriaId'  => '[0-9]+',
-	                ),                    
-                    'defaults' => array(
+                    'constraints' => [
+                        'categoriaId'  => '[0-9]+',
+                    ],
+                    'defaults' => [
                         'controller' => 'Produtos\Controller\Produtos',
                         'action'     => 'listaProdutosPorCategoria',
-                    ),
-                ),
-            ),
-            'detalhaProduto' => array(
+                    ],
+                ],
+            ],
+            'detalhaProduto' => [
                 'type'    => 'segment',
-                'options' => array(
+                'options' => [
                     'route'    => '/produto/:produtoId/',
-                    'constraints' => array(
+                    'constraints' => [
                         'produtoId'  => '[0-9]+',
-                    ),                    
-                    'defaults' => array(
+                    ],
+                    'defaults' => [
                         'controller' => 'Produtos\Controller\Produtos',
                         'action'     => 'detalhaProduto',
-                    ),
-                ),
-            ),
-        ),
-    ),
-    
+                    ],
+                ],
+            ],
+        ],
+    ],
+
     'view_manager' => [
         'display_not_found_reason' => true,
         'display_exceptions'       => true,
@@ -53,4 +53,4 @@ return array(
         ],
     ],
 
-);
+];

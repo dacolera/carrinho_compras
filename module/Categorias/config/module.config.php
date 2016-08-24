@@ -1,27 +1,27 @@
 <?php
 
-return array(
-	'controllers' => array(
-        'invokables' => array(
+return [
+    'controllers' => [
+        'invokables' => [
             'Categorias\Controller\Categorias' => 'Categorias\Controller\CategoriasController',
-        ),
-    ),
+        ],
+    ],
 
-    'router' => array(
-        'routes' => array(
-            'categorias' => array(
+    'router' => [
+        'routes' => [
+            'categorias' => [
                 'type'    => 'segment',
-                'options' => array(
+                'options' => [
                     'route'    => '/categorias/:categoriaId/produtos/',
-	                'constraints' => array(
-	                    'categoriaId'     => '[0-9]+',
-	                ),                    
-                    'defaults' => array(
+                    'constraints' => [
+                        'categoriaId'     => '[0-9]+',
+                    ],
+                    'defaults' => [
                         'controller' => 'Categorias\Controller\Categorias',
                         'action'     => 'listaProdutosPorCategoria',
-                    ),
-                ),
-            ),
-        ),
-    ),
-);
+                    ],
+                ],
+            ],
+        ],
+    ],
+];

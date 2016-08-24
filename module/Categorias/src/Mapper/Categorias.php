@@ -9,40 +9,38 @@ use Zend\Db\Adapter\Adapter;
  */
 class Categorias extends Adapter
 {
-	/**
-	 * Retorna uma lista de categorias
-	 * @return array
-	 */
-	public function getCategorias()
-	{
-		$statement = $this->createStatement('SELECT * FROM categoria');
-		$statement->prepare();
-		$result = $statement->execute();
+    /**
+     * Retorna uma lista de categorias
+     * @return array
+     */
+    public function getCategorias()
+    {
+        $statement = $this->createStatement('SELECT * FROM categoria');
+        $statement->prepare();
+        $result = $statement->execute();
 
-		return $result;
-	}
+        return $result;
+    }
 
-	/**
-	 * Retorna uma categoria pelo id
-	 * @param int $categoriaId
-	 * @return array
-	 */
-	public function getCategoriaPorId($categoriaId)
-	{
-		$statement = $this->createStatement(
-			'SELECT 
-			    c.*
-			FROM
-			    categoria AS c
-			WHERE
+    /**
+     * Retorna uma categoria pelo id
+     * @param int $categoriaId
+     * @return array
+     */
+    public function getCategoriaPorId($categoriaId)
+    {
+        $statement = $this->createStatement(
+            'SELECT 
+                c.*
+            FROM
+                categoria AS c
+            WHERE
 			    c.categoria_id = ' .$categoriaId
-		);
+        );
 
-		$statement->prepare();
-		$result = $statement->execute();
+        $statement->prepare();
+        $result = $statement->execute();
 
-		return $result;
-	}
-
-
+        return $result;
+    }
 }
