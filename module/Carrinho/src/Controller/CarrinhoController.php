@@ -24,7 +24,9 @@ class CarrinhoController extends AbstractActionController
     public function mostraCarrinhoAction()
     {
         $manipuladorCarrinho = $this->getManipuladorCarrinho();
-        $produtosCarrinho = $manipuladorCarrinho->getCarrinho();
+        $produtosCarrinho = $manipuladorCarrinho->getCarrinho(
+            $this->getServiceLocator()->get('Produtos\Service\Produtos')
+        );
 
         return (new ViewModel())
             ->setVariable('produtos', $produtosCarrinho);

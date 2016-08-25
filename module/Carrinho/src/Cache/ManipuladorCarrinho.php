@@ -3,6 +3,7 @@
 namespace Carrinho\Cache;
 
 use Zend\Session\Container;
+use Produtos\Service\Produtos;
 
 /**
 * Manipula os dados do carrinho
@@ -10,7 +11,6 @@ use Zend\Session\Container;
 class ManipuladorCarrinho
 {
     const CARRINHO = "carrinho";
-    const PRODUTOS_DETALHADOS = "produtosDetalhados";
 
     /**
      * @var Container
@@ -64,46 +64,19 @@ class ManipuladorCarrinho
 
     /**
      * Retorna os produtos do carrinho com os detalhes e quantidade
+     * @param Produtos\Service\Produtos $produtoService
      * @return array
      */
-    public function getCarrinho()
+    public function getCarrinho(Produtos $produtoService)
     {
         $carrinhoProdutos = $this->container->offSetGet(self::CARRINHO);
-        $produtosDetalhados = $this->container->offSetGet(self::PRODUTOS_DETALHADOS);
+        $carrinhoProdutos = ! empty($carrinhoProdutos) ? $carrinhoProdutos : [];
 
-        foreach ($produtosDetalhados as $produtoId => $produto) {
-            if (! array_key_exists($produtoId, $carrinhoProdutos)) {
-                unset($produtosDetalhados[$produtoId]);
-
-                $this->container->offSetSet(
-                    self::PRODUTOS_DETALHADOS,
-                    $produtosDetalhados
-                );
-                continue;
-            }
-            $produtosDetalhados[$produtoId]["quantidade"] = $carrinhoProdutos[$produtoId];
+        foreach ($carrinhoProdutos as $produtoId => $quantidade) {
+            $carrinhoProdutos[$produtoId] = $produtoService->getProdutoPorId($produtoId);
+            $carrinhoProdutos[$produtoId]['quantidade'] = $quantidade;
         }
 
-        ksort($produtosDetalhados);
-        return $produtosDetalhados;
-    }
-
-    /**
-     * Guarda os dados do produto detalhado
-     * @param  int $produtoId
-     * @param  array  $produto Dados do produto
-     * @return boolean
-     */
-    public function guardaProdutoDetalhado($produtoId, array $produto)
-    {
-        $produtosDetalhados = $this->container->offSetGet(self::PRODUTOS_DETALHADOS);
-        $produtosDetalhados[$produtoId] = $produto;
-
-        $this->container->offSetSet(
-            self::PRODUTOS_DETALHADOS,
-            $produtosDetalhados
-        );
-
-        return true;
+        return $carrinhoProdutos;
     }
 }
