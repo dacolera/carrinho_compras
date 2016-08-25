@@ -1,5 +1,7 @@
 <?php
 
 return [
-    'factories' => [],
+    'factories' => [
+        "Carrinho\Cache\ManipuladorCarrinho" => "Carrinho\Factory\Cache\ManipuladorCarrinhoFactory"
+    ],
 ];

@@ -5,24 +5,39 @@
                 <th><h2>Produtos da categoria : <?php echo $this->categoria['descricao'] ?></h2></th>
             </tr>
         </thead>
-        <tbody>
-            <?php foreach ($this->produtos as $produto) : ?>
-                <tr>
-                    <td>
-                        <p>
-                            <a href="/produto/<?=$produto['produto_id']?>/">
-                                <?php echo $produto['nome'] ?>
-                            </a>
-                        </p>
-                        <a href="/produto/<?=$produto['produto_id']?>/">
-                            <img src="<?=$produto['imagem']?>" class="img-rounded" height="150" width="150">
-                        </a>
-                        <p>
-                            <h2>R$ <?php echo number_format($produto['preco'], 2, ".", ",") ?></h2>
-                        </p>
-                    </td>
-                  </tr>
-            <?php endforeach; ?>
-        </tbody>
     </table>
 </div>
+
+<?php foreach ($this->produtos as $produto) : ?>
+    <div class="container"">
+        <div class="row">
+            <div class="col-md-12">
+                <a href="/produto/<?=$produto['produto_id']?>/">
+                    <h4> <?php echo $produto['descricao'] ?> </h4>
+                </a>
+            </div>
+            <div class="col-md-2">
+                <a href="/produto/<?=$produto['produto_id']?>/">
+                    <img src="<?php echo $produto['imagem'] ?>" class="img-rounded" height="130" width="130">
+                </a>
+            </div>
+            <div class="col-md-10">
+                <h4>Produto: <small><?php echo $produto['nome'] ?></small></h4>
+            </div>
+            <div class="col-md-3">
+                <h4>Marca: <small><?php echo $produto['marca'] ?></small></h4>
+            </div>
+            <div class="col-md-7">
+                <a href="/produto/<?=$produto['produto_id']?>/">
+                    <button type="button" class="btn btn-info">Ver detalhes do Produto</button>
+                </a>
+            </div>                               
+            <div class="col-md-10">
+                <h4>Preço: <small>R$ <?php echo number_format($produto['preco'], 2, ",", ".") ?></small></h4>
+            </div>                    
+        </div>
+        <br>
+        <br>
+    </div>
+ 
+<?php endforeach; ?>

@@ -29,6 +29,16 @@ return [
                     ],
                 ],
             ],
+            'remove-produto' => [
+                'type'    => 'segment',
+                'options' => [
+                    'route'    => '/carrinho/remover-produto/',
+                    'defaults' => [
+                        'controller' => 'Carrinho\Controller\Carrinho',
+                        'action'     => 'removeProduto',
+                    ],
+                ],
+            ],
         ],
     ],
 

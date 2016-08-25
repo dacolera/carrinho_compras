@@ -1,8 +1,15 @@
+<div class="table-responsive">
+    <table class="table">
+        <thead>
+            <tr>
+                <th><h2> <?php echo $this->produto['descricao'] ?></h2></th>
+            </tr>
+        </thead>
+    </table>
+</div>
+
 <div class="container">
     <div class="row">
-        <div class="col-md-12">
-			<h2> <?php echo $this->produto['descricao'] ?> </h2>
-        </div>
         <div class="col-md-3">
             <img src="<?php echo $this->produto['imagem'] ?>" class="img-rounded" height="200" width="200">
         </div>
@@ -13,23 +20,24 @@
             <h2>Marca: <small><?php echo $produto['marca'] ?></small></h2>
         </div>  
         <div class="col-md-9">
-            <h2>Preço: <small>R$ <?php echo number_format($produto['preco'], 2, ".", ",") ?></small></h2>
+            <h2>Preço: <small>R$ <?php echo number_format($produto['preco'], 2, ",", ".") ?></small></h2>
         </div>          
     </div>
     <br><br>
+    <input type="hidden" name="produtoId" value="<?php echo $produto['produto_id'] ?>">
     <div class="row">
         <div class="col-md-2">
             <button type="button" class="btn btn-success" id="adicionar-carrinho">Adicionar ao Carrinho</button>
-            <input type="hidden" name="produtoId" value="<?php echo $produto['produto_id'] ?>">
         </div>
         <div class="col-md-3">
             <div class="input-group">
                 <span class="input-group-addon" id="basic-addon1">Quantidade</span>
 
-                <input type="number"name="quantidade" class="form-control" placeholder="Adicionar..." aria-describedby="basic-addon1" min="1" pattern="\d*">
+                <input type="number" name="quantidade" class="form-control" placeholder="Adicionar..." aria-describedby="basic-addon1" min="1" pattern="\[0-9]+">
             </div>      
         </div>      
     </div>
+    <br>
     <?php if (count($this->produtosCaracteristicas)) : ?>
         <br><br>
         <div class="row">

@@ -43,10 +43,22 @@
             </div>
         </nav>
         <div class="container">
-            <div class="form-group">
-                <label for="buscarProdutos"><h2>Buscar Produtos</h2></label>
-                <input type="produto" class="form-control" id="produto" placeholder="Buscar">
-            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <label for="buscarProdutos"><h2>Buscar Produtos</h2></label>
+                </div>
+            </div> 
+            <br>
+            <div class="row">          
+                <div class="col-md-9">
+                    <input type="produto" class="form-control" id="produto" placeholder="Buscar">
+                </div>        
+                <div class="col-md-2">
+                    <a onclick="history.go(-1)">
+                        <button type="button" class="btn btn-default">Voltar</button>
+                    </a>
+                </div>
+            </div>            
             <?= $this->content ?>
         </div>
         <?= $this->inlineScript() ?>

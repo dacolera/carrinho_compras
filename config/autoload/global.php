@@ -15,10 +15,18 @@ return [
     'db' => [
         'driver'         => 'Pdo',
         'dsn'            => 'mysql:dbname=carrinho_compras;host=localhost',
-        'username'       => 'carrinho_compras',
-        'password'       => 'carrinho_compras',
+        'username'       => 'root',
+        'password'       => 'root',
         'driver_options' => [
             PDO::MYSQL_ATTR_INIT_COMMAND => 'SET NAMES \'UTF8\''
+        ],
+    ],
+
+    'service_manager' => [
+        'factories' => [
+            'sessionService' => function ($sm) {
+                return new \Zend\Session\Container('CarrinhoCompras');
+            },
         ],
     ],
 ];

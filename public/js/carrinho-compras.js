@@ -1,6 +1,5 @@
 /**
  * Valida os dados para adicionar produto ao carrinho
- * @return boolean
  */
 function adicionarAoCarrinho()
 {
@@ -13,26 +12,42 @@ function adicionarAoCarrinho()
 			return false;
 		}
 		
-		ajaxAdicionar(produtoId, quantidade);
+		var data = {
+			produtoId: produtoId,
+			quantidade: quantidade
+		};
+
+		manipularCarrinho('/carrinho/adicionar-produto/', data);
 	})
 }
 
 /**
- * Faz a requisição ao servidor para adicionar o produto no carrinho
+ * Valida os dados para remover o produto do carrinho
+ */
+function removerDoCarrinho(produtoId)
+{
+	var data = {
+		produtoId: produtoId
+	};
+
+	manipularCarrinho('/carrinho/remover-produto/', data);
+
+	$("#produto-" + produtoId).html("");
+}
+
+/**
+ * Faz a requisição ao servidor para manipular o produto no carrinho
  * @return boolean
  */
-function ajaxAdicionar(produtoId, quantidade)
+function manipularCarrinho(url, data)
 {
 	$.ajax({
   		method: "POST",
-  		url: "/carrinho/adicionar-produto/",
-  		data: {
-  			produtoId: produtoId,
-  			quantidade: quantidade
-  		},
+  		url: url,
+  		data: data,
   		dataType: "json",
 	  	success:function(response) {
-	    	console.log(response);
+	    	alert(response.message)
 	  	}		
 	});
 }

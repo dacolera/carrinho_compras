@@ -9,31 +9,25 @@ use Zend\View\Model\JsonModel;
 class CarrinhoController extends AbstractActionController
 {
     /**
+     * Retorna uma instancia de ManipuladorCarrinho
+     * @return Carrinho\Cache\ManipuladorCarrinho
+     */
+    private function getManipuladorCarrinho()
+    {
+        return $this->getServiceLocator()->get('Carrinho\Cache\ManipuladorCarrinho');
+    }
+
+    /**
      * Renderiza a tela de carrinho do cliente
      * @return ViewModel
      */
     public function mostraCarrinhoAction()
     {
-        // Carrega do cache (redis?) os produtos adicionados
-        $produtosCarrinho = [
-            'produtos' => [
-                "1" => [
-                    "nome" => "TV SAMSUNG",
-                    "preco" => "1.500,00",
-                    "imagem" => "<img>",
-                    "quantidade" => "1",
-                ],
-                "2" => [
-                    "nome" => "TV SONY",
-                    "preco" => "3.000,00",
-                    "imagem" => "<img>",
-                    "quantidade" => "2",
-                ]
-            ]
-        ];
+        $manipuladorCarrinho = $this->getManipuladorCarrinho();
+        $produtosCarrinho = $manipuladorCarrinho->getCarrinho();
 
         return (new ViewModel())
-            ->setVariable('produtosCarrinho', $produtosCarrinho);
+            ->setVariable('produtos', $produtosCarrinho);
     }
 
     /**
@@ -42,9 +36,35 @@ class CarrinhoController extends AbstractActionController
      */
     public function adicionaProdutoAction()
     {
-        // Adicionar o produto ao cache (redis?)
+        $produtoId = $this->params()->fromPost("produtoId", null);
+        $quantidade = $this->params()->fromPost("quantidade", null);
+
+        $manipuladorCarrinho = $this->getManipuladorCarrinho();
+        $manipuladorCarrinho->adicionarProduto(
+            $produtoId,
+            $quantidade
+        );
+
         return new JsonModel(
-            $this->params()->fromPost()
+            ["message" => "Adicionado com sucesso"]
+        );
+    }
+
+   /**
+     * Remove o produto do carrinho
+     * @return JsonModel
+     */
+    public function removeProdutoAction()
+    {
+        $produtoId = $this->params()->fromPost("produtoId", null);
+
+        $manipuladorCarrinho = $this->getManipuladorCarrinho();
+        $manipuladorCarrinho->removerProduto(
+            $produtoId
+        );
+
+        return new JsonModel(
+            ["message" => "Removido com sucesso"]
         );
     }
 }

@@ -39,6 +39,9 @@ class ProdutosController extends AbstractActionController
         $produto = $produtosService->getProdutoPorId($produtoId);
         $produtosCaracteristicas = $produtosService->getCaracteristicasProdutoPorId($produtoId);
 
+        $manipuladorCarrinho = $this->getServiceLocator()->get('Carrinho\Cache\ManipuladorCarrinho');
+        $manipuladorCarrinho->guardaProdutoDetalhado($produtoId, $produto);
+
         return (new ViewModel())
             ->setVariable('produto', $produto)
             ->setVariable('produtosCaracteristicas', $produtosCaracteristicas);

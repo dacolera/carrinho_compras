@@ -1,1 +1,49 @@
-<?php var_dump($this->produtosCarrinho);
+<div class="table-responsive">
+    <table class="table">
+        <thead>
+            <tr>
+                <th><h2>Produtos do carrinho</h2></th>
+            </tr>
+        </thead>
+    </table>
+</div>
+
+<?php foreach ($this->produtos as $produto) : ?>
+    <div class="container" id="produto-<?php echo $produto['produto_id'] ?>">
+        <div class="row">
+            <div class="col-md-12">
+                <a href="/produto/<?=$produto['produto_id']?>/">
+                    <h4> <?php echo $produto['descricao'] ?> </h4>
+                </a>
+            </div>
+            <div class="col-md-2">
+            <a href="/produto/<?=$produto['produto_id']?>/">                
+                <img src="<?php echo $produto['imagem'] ?>" class="img-rounded" height="130" width="130">
+            </a>
+            </div>
+            <div class="col-md-4">
+                <h4>Produto: <small><?php echo $produto['nome'] ?></small></h4>
+            </div>
+            <div class="col-md-3">
+                <div class="input-group">
+                    <span class="input-group-addon" id="basic-addon1">Quantidade</span>
+
+                    <input type="number" name="quantidade" value="<?php echo $produto['quantidade'] ?>" readonly=1 class="form-control">
+                </div>      
+            </div>              
+            <div class="col-md-3">
+                <button type="button" class="btn btn-danger" id="remover-carrinho" 
+                onclick='removerDoCarrinho("<?php echo $produto['produto_id'] ?>")'>Remover do Carrinho</button>
+            </div>          
+            <div class="col-md-10">
+                <h4>Marca: <small><?php echo $produto['marca'] ?></small></h4>
+            </div>
+            <div class="col-md-3">
+                <h4>Preço: <small>R$ <?php echo number_format($produto['preco'], 2, ",", ".") ?></small></h4>
+            </div>                    
+        </div>
+        <br>
+        <br>
+    </div>
+ 
+<?php endforeach; ?>
