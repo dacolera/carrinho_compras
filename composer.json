@@ -12,9 +12,8 @@
     "minimum-stability": "dev",
     "prefer-stable": true,
     "require": {
-        "php": "^5.6",
+        "php": ">=5.6",
         "zendframework/zendframework":"2.*",
-        "zf-commons/zfc-base": "dev-master",
         "squizlabs/php_codesniffer": "^2.6"
     },
     "autoload": {
@@ -24,11 +23,6 @@
             "Produtos\\": "module/Produtos/src/",
             "Carrinho\\": "module/Carrinho/src/",
             "Pedido\\": "module/Pedido/src"
-        }
-    },
-    "autoload-dev": {
-        "psr-4": {
-            "ApplicationTest\\": "module/Application/test/"
         }
     },
     "extra": [],
