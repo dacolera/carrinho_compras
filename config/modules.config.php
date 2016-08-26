@@ -15,5 +15,6 @@ return [
     'Carrinho',
     'Categorias',
     'Home',
+    'Pedido',
     'Produtos',
 ];

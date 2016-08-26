@@ -30,7 +30,7 @@ CREATE TABLE `autenticacao` (
   `senha` varchar(45) NOT NULL,
   PRIMARY KEY (`autenticacao_id`),
   UNIQUE KEY `login_UNIQUE` (`login`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -39,7 +39,6 @@ CREATE TABLE `autenticacao` (
 
 LOCK TABLES `autenticacao` WRITE;
 /*!40000 ALTER TABLE `autenticacao` DISABLE KEYS */;
-INSERT INTO `autenticacao` VALUES (1,'dineyantunes','senha');
 /*!40000 ALTER TABLE `autenticacao` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -100,17 +99,13 @@ DROP TABLE IF EXISTS `cliente`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `cliente` (
   `cliente_id` int(10) unsigned NOT NULL AUTO_INCREMENT,
-  `autenticacao_id` int(10) unsigned NOT NULL,
   `nome` varchar(45) NOT NULL,
-  `sobrenome` varchar(45) NOT NULL,
   `cpf` varchar(45) NOT NULL,
   `data_nascimento` date NOT NULL,
   `email` varchar(100) NOT NULL,
   `telefone` varchar(45) NOT NULL,
-  PRIMARY KEY (`cliente_id`),
-  KEY `autenticacao_id_idx_idx` (`autenticacao_id`),
-  CONSTRAINT `autenticacao_id_fk` FOREIGN KEY (`autenticacao_id`) REFERENCES `autenticacao` (`autenticacao_id`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+  PRIMARY KEY (`cliente_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=24 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -119,7 +114,7 @@ CREATE TABLE `cliente` (
 
 LOCK TABLES `cliente` WRITE;
 /*!40000 ALTER TABLE `cliente` DISABLE KEYS */;
-INSERT INTO `cliente` VALUES (1,1,'Diney','Antunes','12334545678','2016-07-03','diney_dla@yahoo.com.br','11969140823');
+INSERT INTO `cliente` VALUES (21,'DINEY LUIZ ANTUNES','13445453','3345-04-05','diney.dla@gmail.com','11969140823'),(22,'DINEY LUIZ ANTUNES','13445453','3345-04-05','diney.dla@gmail.com','11969140823'),(23,'DINEY LUIZ ANTUNES','345678','0033-02-12','diney.dla@gmail.com','11969140823');
 /*!40000 ALTER TABLE `cliente` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -140,7 +135,7 @@ CREATE TABLE `endereco` (
   `cidade` varchar(100) NOT NULL,
   `estado` varchar(50) NOT NULL,
   PRIMARY KEY (`endereco_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=24 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -149,7 +144,7 @@ CREATE TABLE `endereco` (
 
 LOCK TABLES `endereco` WRITE;
 /*!40000 ALTER TABLE `endereco` DISABLE KEYS */;
-INSERT INTO `endereco` VALUES (1,'Rua Teste',11,NULL,1234678,'Jd. Teste','Teste City','SP');
+INSERT INTO `endereco` VALUES (21,'Rua Amélia Marques De Oliveira',11,'12321',6365370,'31321','Casa Branca','SP'),(22,'Rua Amélia Marques De Oliveira',11,'12321',6365370,'31321','Casa Branca','SP'),(23,'Rua Amélia Marques De Oliveira',11,'4535',23456,'345678','Casa Branca','SP');
 /*!40000 ALTER TABLE `endereco` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -176,7 +171,7 @@ CREATE TABLE `endereco_cliente` (
 
 LOCK TABLES `endereco_cliente` WRITE;
 /*!40000 ALTER TABLE `endereco_cliente` DISABLE KEYS */;
-INSERT INTO `endereco_cliente` VALUES (1,1);
+INSERT INTO `endereco_cliente` VALUES (21,21),(22,22),(23,23);
 /*!40000 ALTER TABLE `endereco_cliente` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -224,7 +219,7 @@ CREATE TABLE `pedido` (
   CONSTRAINT `cliente_id_fk` FOREIGN KEY (`cliente_id`) REFERENCES `cliente` (`cliente_id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `endereco_id_fk` FOREIGN KEY (`endereco_id`) REFERENCES `endereco` (`endereco_id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `forma_pag_id_fk` FOREIGN KEY (`forma_pagamento_id`) REFERENCES `forma_pagamento` (`forma_pagamento_id`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=23 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -233,6 +228,7 @@ CREATE TABLE `pedido` (
 
 LOCK TABLES `pedido` WRITE;
 /*!40000 ALTER TABLE `pedido` DISABLE KEYS */;
+INSERT INTO `pedido` VALUES (20,21,21,3,6000.00),(21,22,22,3,6000.00),(22,23,23,3,4780.00);
 /*!40000 ALTER TABLE `pedido` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -245,12 +241,13 @@ DROP TABLE IF EXISTS `pedido_produto`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `pedido_produto` (
   `pedido_id` int(10) unsigned NOT NULL,
-  `produto_id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `produto_id` int(10) unsigned NOT NULL,
   `quantidade` int(10) unsigned NOT NULL,
   `valor_unitario` decimal(10,2) NOT NULL,
   `valor_total` decimal(10,2) NOT NULL,
-  PRIMARY KEY (`produto_id`),
+  PRIMARY KEY (`pedido_id`,`produto_id`),
   KEY `pedido_id_fk_idx` (`pedido_id`),
+  KEY `produto_id_fk` (`produto_id`),
   CONSTRAINT `pedido_id_fk` FOREIGN KEY (`pedido_id`) REFERENCES `pedido` (`pedido_id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `produto_id_fk` FOREIGN KEY (`produto_id`) REFERENCES `produto` (`produto_id`) ON DELETE NO ACTION ON UPDATE NO ACTION
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
@@ -262,6 +259,7 @@ CREATE TABLE `pedido_produto` (
 
 LOCK TABLES `pedido_produto` WRITE;
 /*!40000 ALTER TABLE `pedido_produto` DISABLE KEYS */;
+INSERT INTO `pedido_produto` VALUES (20,2,2,3000.00,6000.00),(21,2,2,3000.00,6000.00),(22,3,4,1195.00,4780.00);
 /*!40000 ALTER TABLE `pedido_produto` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -357,4 +355,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2016-08-25  1:30:03
+-- Dump completed on 2016-08-26  1:46:40
