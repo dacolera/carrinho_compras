@@ -79,4 +79,13 @@ class ManipuladorCarrinho
 
         return $carrinhoProdutos;
     }
+
+    /**
+     * Remove todos os produtos do carrinho
+     * @return void
+     */
+    public function removerProdutosDoCarrinho()
+    {
+        $this->container->offsetUnset(self::CARRINHO);
+    }
 }

@@ -21,7 +21,7 @@ class PedidoController extends AbstractActionController
      * @return ViewModel
      */
     public function finalizarAction()
-    {   
+    {
         $dadosCliente = $this->params()->fromPost("cliente");
         $dadosEndereco = $this->params()->fromPost("endereco");
         $formaPagamentoId = $this->params()->fromPost("forma_pagamento_id");
@@ -40,7 +40,9 @@ class PedidoController extends AbstractActionController
             $formaPagamentoId
         );
 
+        $manipuladorCarrinho->removerProdutosDoCarrinho();
+
         return (new ViewModel())
             ->setVariable('pedidoId', $pedidoId);
-    }    
+    }
 }

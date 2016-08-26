@@ -26,16 +26,17 @@
     <br><br>
     <input type="hidden" name="produtoId" value="<?php echo $produto['produto_id'] ?>">
     <div class="row">
-        <div class="col-md-2">
-            <button type="button" class="btn btn-success" id="adicionar-carrinho">Adicionar ao Carrinho</button>
-        </div>
+        
         <div class="col-md-3">
             <div class="input-group">
                 <span class="input-group-addon" id="basic-addon1">Quantidade</span>
 
                 <input type="number" name="quantidade" class="form-control" placeholder="Adicionar..." aria-describedby="basic-addon1" min="1" pattern="\[0-9]+">
             </div>      
-        </div>      
+        </div>
+        <div class="col-md-2">
+            <button type="button" class="btn btn-success" id="adicionar-carrinho">Adicionar ao Carrinho</button>
+        </div>
     </div>
     <br>
     <?php if (count($this->produtosCaracteristicas)) : ?>
