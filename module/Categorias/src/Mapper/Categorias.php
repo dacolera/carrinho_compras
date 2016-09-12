@@ -15,7 +15,7 @@ class Categorias extends Adapter
      */
     public function getCategorias()
     {
-        $statement = $this->createStatement('SELECT * FROM categoria');
+        $statement = $this->createStatement('SELECT * FROM categoria c INNER JOIN produto_categoria pc ON c.categoria_id = pc.categoria_id ');
         $statement->prepare();
         $result = $statement->execute();
 
